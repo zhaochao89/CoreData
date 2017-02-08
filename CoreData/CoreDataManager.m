@@ -35,7 +35,11 @@
     dataPath = [dataPath stringByAppendingPathComponent:@"CoreData.sqlite"];
     NSLog(@"\n dataPath = %@ \n",dataPath);
     NSError *error = nil;
-    [psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:[NSURL fileURLWithPath:dataPath] options:nil error:&error];
+    //设置版本迁移方案
+    NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption : @YES,
+                              NSInferMappingModelAutomaticallyOption : @YES};
+    //创建持久化存储协调器，并将迁移方案的字典当做参数传入(注：这个地方的URL必须用fileURL，否则会报错)
+    [psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:[NSURL fileURLWithPath:dataPath] options:options error:&error];
     if (error) {
         NSLog(@"创建SQLite数据库失败!");
     }

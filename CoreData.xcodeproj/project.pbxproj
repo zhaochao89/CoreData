@@ -20,6 +20,7 @@
 		A05677071E2339270089F5BA /* HttpManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A05677061E2339270089F5BA /* HttpManager.m */; };
 		A056770A1E2386210089F5BA /* CoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A05677091E2386210089F5BA /* CoreDataManager.m */; };
 		A05678621E25D0E90089F5BA /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A05678611E25D0E90089F5BA /* libsqlite3.0.tbd */; };
+		A0FEF8511E4B03EA00DF08B1 /* Model.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = A0FEF8501E4B03EA00DF08B1 /* Model.xcmappingmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		A05677081E2386210089F5BA /* CoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataManager.h; sourceTree = "<group>"; };
 		A05677091E2386210089F5BA /* CoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataManager.m; sourceTree = "<group>"; };
 		A05678611E25D0E90089F5BA /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		A0FEF8501E4B03EA00DF08B1 /* Model.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model.xcmappingmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +135,7 @@
 				A05676E01E23385D0089F5BA /* LaunchScreen.storyboard */,
 				A05676E31E23385D0089F5BA /* Info.plist */,
 				A05676DB1E23385D0089F5BA /* CoreData.xcdatamodeld */,
+				A0FEF8501E4B03EA00DF08B1 /* Model.xcmappingmodel */,
 				A05676CF1E23385D0089F5BA /* Supporting Files */,
 			);
 			path = CoreData;
@@ -309,6 +312,7 @@
 				A056770A1E2386210089F5BA /* CoreDataManager.m in Sources */,
 				A023FAB11E35AAB9001DED19 /* FetchResultViewController.m in Sources */,
 				A05677071E2339270089F5BA /* HttpManager.m in Sources */,
+				A0FEF8511E4B03EA00DF08B1 /* Model.xcmappingmodel in Sources */,
 				A05676DD1E23385D0089F5BA /* CoreData.xcdatamodeld in Sources */,
 				A05676D71E23385D0089F5BA /* ViewController.m in Sources */,
 				A05676D41E23385D0089F5BA /* AppDelegate.m in Sources */,

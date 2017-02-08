@@ -10,7 +10,7 @@
 #import "HttpManager.h"
 #import "CoreDataManager.h"
 #import "Department+CoreDataClass.h"
-#import "Employee+CoreDataClass.h"
+#import "Employee2+CoreDataClass.h"
 #import "FetchResultViewController.h"
 
 @interface ViewController ()
@@ -30,12 +30,12 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"height < 170"];
     
     
-    NSArray *list = [[CoreDataManager manager] selectDataToEntity:NSStringFromClass([Employee class]) withPredicate:predicate];
-    for (Employee *object in list) {
+    NSArray *list = [[CoreDataManager manager] selectDataToEntity:NSStringFromClass([Employee2 class]) withPredicate:predicate];
+    for (Employee2 *object in list) {
         NSLog(@"%@",object.name);
     }
     list = [list filteredArrayUsingPredicate:predicate];
-    for (Employee *object in list) {
+    for (Employee2 *object in list) {
         NSLog(@"\n %@",object.name);
     }
     
@@ -51,10 +51,10 @@ static int count = 0;
 
 //异步请求
 - (void)asycFetchRequest {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([Employee class])];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([Employee2 class])];
     NSAsynchronousFetchRequest *asyncRequest = [[NSAsynchronousFetchRequest alloc] initWithFetchRequest:fetchRequest completionBlock:^(NSAsynchronousFetchResult * _Nonnull result) {
         NSArray *arr = result.finalResult;
-        for (Employee *e in arr) {
+        for (Employee2 *e in arr) {
             NSLog(@"name %@ height %f sessionName %@",e.name,e.height,e.sessionName);
         }
     }];
@@ -66,7 +66,7 @@ static int count = 0;
 }
 
 - (void)batchDelete {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([Employee class])];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([Employee2 class])];
     NSBatchDeleteRequest *deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchRequest];
     deleteRequest.resultType = NSBatchDeleteResultTypeCount;
     NSError *error = nil;
@@ -80,7 +80,7 @@ static int count = 0;
 }
 
 - (void)batchUpdate {
-    NSBatchUpdateRequest *request = [NSBatchUpdateRequest batchUpdateRequestWithEntityName:NSStringFromClass([Employee class])];
+    NSBatchUpdateRequest *request = [NSBatchUpdateRequest batchUpdateRequestWithEntityName:NSStringFromClass([Employee2 class])];
     //指定返回类型
     request.resultType = NSUpdatedObjectsCountResultType;
     //更新数据（字典格式）
@@ -100,17 +100,17 @@ static int count = 0;
 
 - (void)updateData {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"sessionName = %@",@"灵达"];
-    NSArray *list = [[CoreDataManager manager] selectDataToEntity:NSStringFromClass([Employee class]) withPredicate:predicate];
+    NSArray *list = [[CoreDataManager manager] selectDataToEntity:NSStringFromClass([Employee2 class]) withPredicate:predicate];
     [list enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        Employee *employee = (Employee *)obj;
-        employee.height = 180.f;
+        Employee2 *employee2 = (Employee2 *)obj;
+        employee2.height = 180.f;
     }];
     [[CoreDataManager manager] updateObject];
 }
 
 - (void)deleteData {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name = %@",@"张三"];
-    NSArray *list = [[CoreDataManager manager] selectDataToEntity:NSStringFromClass([Employee class]) withPredicate:predicate];
+    NSArray *list = [[CoreDataManager manager] selectDataToEntity:NSStringFromClass([Employee2 class]) withPredicate:predicate];
     [list enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         [[CoreDataManager manager] deleteObject:obj];
     }];
@@ -125,7 +125,7 @@ static int count = 0;
                            @"brithday" : [NSDate date]
                            };
     
-    [[CoreDataManager manager] insertDataToEntity:NSStringFromClass([Employee class]) withParameter:dict];
+    [[CoreDataManager manager] insertDataToEntity:NSStringFromClass([Employee2 class]) withParameter:dict];
 }
 
 - (void)didReceiveMemoryWarning {

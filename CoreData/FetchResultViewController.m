@@ -8,7 +8,8 @@
 
 #import "FetchResultViewController.h"
 #import <CoreData/NSFetchedResultsController.h>
-#import "Employee+CoreDataClass.h"
+//#import "Employee+CoreDataClass.h"
+#import "Employee2+CoreDataClass.h"
 #import "CoreDataManager.h"
 
 @interface FetchResultViewController () <UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate>
@@ -42,12 +43,13 @@ static int count = 5;
     count ++;
     NSDictionary *dict = @{
                            @"name" : [NSString stringWithFormat:@"张三_%d",count],
+                           @"nikeName" : @"小黑",
                            @"sessionName" : @"创达",
                            @"height" : @(arc4random_uniform(170)),
                            @"brithday" : [NSDate date]
                            };
     
-    [[CoreDataManager manager] insertDataToEntity:NSStringFromClass([Employee class]) withParameter:dict];
+    [[CoreDataManager manager] insertDataToEntity:NSStringFromClass([Employee2 class]) withParameter:dict];
 }
 
 - (void)setupView {
@@ -56,7 +58,7 @@ static int count = 5;
     self.tableView.delegate = self;
     [self.view addSubview:self.tableView];
     
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([Employee class])];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([Employee2 class])];
     //fetchRequest需要一个sortDescriptors，不然会报错
     NSSortDescriptor *heightSort = [NSSortDescriptor sortDescriptorWithKey:@"height" ascending:YES];
     fetchRequest.sortDescriptors = @[heightSort];
@@ -91,7 +93,7 @@ static int count = 5;
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cellID"];
     }
-    Employee *e = [self.fetchedResultController objectAtIndexPath:indexPath];
+    Employee2 *e = [self.fetchedResultController objectAtIndexPath:indexPath];
     cell.textLabel.text = e.name;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%f",e.height];
     return cell;
@@ -107,7 +109,7 @@ static int count = 5;
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        Employee *e = [self.fetchedResultController objectAtIndexPath:indexPath];
+        Employee2 *e = [self.fetchedResultController objectAtIndexPath:indexPath];
         [[CoreDataManager manager] deleteObject:e];
     }
 }
@@ -133,7 +135,7 @@ static int count = 5;
             break;
         case NSFetchedResultsChangeUpdate: {
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            Employee *emp = [self.fetchedResultController objectAtIndexPath:indexPath];
+            Employee2 *emp = [self.fetchedResultController objectAtIndexPath:indexPath];
             cell.textLabel.text = emp.name;
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%f",emp.height];
         }
